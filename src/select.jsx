@@ -251,7 +251,11 @@ var classBase = React.createClass({
   onClickOption (index, ev) {
     var child = this.refs['option' + index];
 
-    ev.preventDefault();
+    // iOS doesn't send an event here for some reason.
+    // Only the programming gods know why.
+    if (ev) {
+      ev.preventDefault();
+    }
 
     this.setState({
       selectedOptionIndex: index,
